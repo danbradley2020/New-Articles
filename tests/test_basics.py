@@ -18,3 +18,9 @@ class BasicsTestCase(unittest.TestCase):
         '''
 
         self.app_context.pop()
+
+    def test_app_exists(self):
+        '''
+        Test that expr is true (or false).
+        '''
+        self.assertFalse(current_app is None)
