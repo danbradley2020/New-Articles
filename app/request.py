@@ -2,15 +2,15 @@ import urllib.request,json
 from .models import Article, Category, Source , Headlines
 
 # Getting api key
-api_key = None
+apiKey = None
 # Getting source url
 source_url= None
 # Getting source url
 cat_url= None
 
 def configure_request(app):
-    global api_key, source_url, cat_url
-    api_key = app.config['NEWS_API_KEY']
+    global apiKey, source_url, cat_url
+    apiKey = app.config['NEWS_API_KEY']
     source_url= app.config['NEWS_API_SOURCE_URL']
     cat_url=app.config['CAT_API_URL']
 
@@ -19,7 +19,7 @@ def get_source():
     '''
     Function that gets the json response to url request
     '''
-    get_source_url= source_url.format(api_key)
+    get_source_url= source_url.format(apiKey)
     # print(get_source_url)
     with urllib.request.urlopen(get_source_url) as url:
         get_sources_data = url.read()
@@ -54,7 +54,7 @@ def process_results(source_list):
     return source_results
 
 def article_source(id):
-    article_source_url = 'https://newsapi.org/v2/top-headlines?sources={}&apiKey={}'.format(id,api_key)
+    article_source_url = 'https://newsapi.org/v2/top-headlines?sources={}&apiKey={}'.format(id,apiKey)
     print(article_source_url)
     with urllib.request.urlopen(article_source_url) as url:
         article_source_data = url.read()
@@ -92,7 +92,7 @@ def get_category(cat_name):
     '''
     function that gets the response to the category json
     '''
-    get_category_url = cat_url.format(cat_name,api_key)
+    get_category_url = cat_url.format(cat_name,apiKey)
     print(get_category_url)
     with urllib.request.urlopen(get_category_url) as url:
         get_category_data = url.read()
@@ -110,7 +110,7 @@ def get_headlines():
     '''
     function that gets the response to the category json
     '''
-    get_headlines_url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey={}'.format(api_key)
+    get_headlines_url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey={}'.format(apiKey)
     print(get_headlines_url)
     with urllib.request.urlopen(get_headlines_url) as url:
         get_headlines_data = url.read()
