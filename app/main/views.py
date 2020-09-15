@@ -29,7 +29,8 @@ def category(cat_name):
     function to return the categories.html page and its content
     '''
     category = get_category(cat_name)
-    title = f'{cat_name}'
+    title = f"{cat_name}"
+    # title={}.format(cat_name)
     cat = cat_name
 
     return render_template('categories.html',title = title,category = category, cat= cat_name)
